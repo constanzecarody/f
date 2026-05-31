@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive F</title>
+    <style>
+        /* Reset and center everything perfectly on a white background */
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #ffffff;
+            overflow: hidden;
+            /* Prevents accidental text selection highlighting */
+            user-select: none; 
+        }
+
+        /* Styling for the sleek, thin letter F */
+        #letter {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-weight: 100; /* Ultra-thin variant */
+            font-size: 80px;
+            color: #000000;
+            line-height: 1;
+            /* Smooth fade-out transition when hidden */
+            transition: opacity 0.2s ease;
+            opacity: 1;
+        }
+
+        /* Class to trigger disappearance */
+        .hidden {
+            opacity: 0 !important;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="letter">F</div>
+
+    <script>
+        // Listen for keyboard input across the entire page
+        document.addEventListener('keydown', function(event) {
+            // Check if the pressed key is 'f' or 'F'
+            if (event.key === 'f' || event.key === 'F') {
+                const letterDiv = document.getElementById('letter');
+                letterDiv.classList.add('hidden');
+            }
+        });
+    </script>
+
+</body>
+</html>

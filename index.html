@@ -3,58 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive F with Image</title>
+    <title>Interactive F</title>
     <style>
         /* Reset and center everything vertically and horizontally */
         body {
             margin: 0;
             padding: 0;
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             background-color: #ffffff;
-            overflow: hidden;
-            user-select: none; /* Prevents accidental selection highlighting */
+            user-select: none; /* Prevents accidental text selection highlighting */
         }
 
-        /* Flex container to stack the F and the image vertically */
+        /* Flex container to stack the F and the image vertically with plenty of space */
         .container {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 20px; /* Space between the F and the image */
-            /* Smooth fade-out transition for the whole block */
-            transition: opacity 0.2s ease;
-            opacity: 1;
+            justify-content: center;
+            gap: 30px; /* Generous spacing between the F and the image */
+            text-align: center;
+            width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
         }
 
         /* Styling for the sleek, thin letter F */
         #letter {
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            font-weight: 100;
+            font-weight: 100; /* Ultra-thin variant */
             font-size: 80px;
             color: #000000;
-            line-height: 1;
+            line-height: 1.2; /* Extra line-height headroom to prevent vertical clipping */
+            height: 80px;     /* Explicit height matching your 80px requirement */
+            transition: color 0.1s ease; /* Snappy color transition */
         }
 
-        /* Styling for your uploaded image */
+        /* Styling for your uploaded image scaled down to half size */
         #display-image {
-            max-width: 100%;
+            max-width: 50%; /* Scales the image to half the container's width */
             height: auto;
             display: block;
         }
 
-        /* Class to trigger disappearance */
-        .hidden {
-            opacity: 0 !important;
-            pointer-events: none;
+        /* Class to trigger the red color change */
+        .turn-red {
+            color: #ff0000 !important;
         }
     </style>
 </head>
 <body>
 
-    <div id="interactive-content" class="container">
+    <div class="container">
         <div id="letter">F</div>
         <img id="display-image" src="img.png" alt="Uploaded Image">
     </div>
@@ -64,8 +66,8 @@
         document.addEventListener('keydown', function(event) {
             // Check if the pressed key is 'f' or 'F'
             if (event.key === 'f' || event.key === 'F') {
-                const content = document.getElementById('interactive-content');
-                content.classList.add('hidden');
+                const letterDiv = document.getElementById('letter');
+                letterDiv.classList.add('turn-red');
             }
         });
     </script>

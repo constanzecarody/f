@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive F</title>
+    <title>Interactive F with Image</title>
     <style>
-        /* Reset and center everything perfectly on a white background */
+        /* Reset and center everything vertically and horizontally */
         body {
             margin: 0;
             padding: 0;
@@ -15,20 +15,34 @@
             align-items: center;
             background-color: #ffffff;
             overflow: hidden;
-            /* Prevents accidental text selection highlighting */
-            user-select: none; 
+            user-select: none; /* Prevents accidental selection highlighting */
+        }
+
+        /* Flex container to stack the F and the image vertically */
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px; /* Space between the F and the image */
+            /* Smooth fade-out transition for the whole block */
+            transition: opacity 0.2s ease;
+            opacity: 1;
         }
 
         /* Styling for the sleek, thin letter F */
         #letter {
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            font-weight: 100; /* Ultra-thin variant */
+            font-weight: 100;
             font-size: 80px;
             color: #000000;
             line-height: 1;
-            /* Smooth fade-out transition when hidden */
-            transition: opacity 0.2s ease;
-            opacity: 1;
+        }
+
+        /* Styling for your uploaded image */
+        #display-image {
+            max-width: 100%;
+            height: auto;
+            display: block;
         }
 
         /* Class to trigger disappearance */
@@ -40,15 +54,18 @@
 </head>
 <body>
 
-    <div id="letter">F</div>
+    <div id="interactive-content" class="container">
+        <div id="letter">F</div>
+        <img id="display-image" src="img.png" alt="Uploaded Image">
+    </div>
 
     <script>
         // Listen for keyboard input across the entire page
         document.addEventListener('keydown', function(event) {
             // Check if the pressed key is 'f' or 'F'
             if (event.key === 'f' || event.key === 'F') {
-                const letterDiv = document.getElementById('letter');
-                letterDiv.classList.add('hidden');
+                const content = document.getElementById('interactive-content');
+                content.classList.add('hidden');
             }
         });
     </script>
